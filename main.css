@@ -80,3 +80,21 @@ body.blur::before {
     cursor: pointer;
     margin: 0 20px;
 }
+
+.grid-container {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30px);
+    gap: 5px;
+    justify-content: center;
+}
+
+.square {
+    width: 30px;
+    height: 30px;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+}

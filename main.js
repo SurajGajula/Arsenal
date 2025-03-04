@@ -26,15 +26,33 @@ arsenalButton.onclick = function() {
     updateInfoArea();
 };
 
+function updateGrid() {
+    const gridContainer = document.querySelector('.grid-container');
+    gridContainer.innerHTML = '';
+    for (let i = 0; i < arsenal.count; i++) {
+        const square = document.createElement('div');
+        square.className = 'square';
+        gridContainer.appendChild(square);
+    }
+}
+
+updateGrid();
+
 function showCards() {
     document.body.classList.add('blur');
     const cardContainer = document.querySelector('.card-container');
     cardContainer.style.display = 'flex';
     arsenalButton.disabled = true;
 
-    cardContainer.querySelectorAll('.card').forEach(card => {
+    const randomCardIndex = Math.floor(Math.random() * 3);
+
+    cardContainer.querySelectorAll('.card').forEach((card, index) => {
         card.onclick = function() {
             console.log(`Card ${card.dataset.card} has been selected`);
+            if (index === randomCardIndex) {
+                arsenal.increment();
+                updateGrid();
+            }
             document.body.classList.remove('blur');
             cardContainer.style.display = 'none';
             arsenalButton.disabled = false;
