@@ -31,7 +31,7 @@ arsenalButton.onclick = function() {
 function updateGrid() {
     const gridContainer = document.querySelector('.grid-container');
     gridContainer.innerHTML = '';
-    for (let i = 0; i < arsenal.count; i++) {
+    for (let i = 0; i < arsenal.arms.length; i++) {
         const square = document.createElement('div');
         square.className = 'square';
         gridContainer.appendChild(square);
