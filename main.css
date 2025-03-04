@@ -87,7 +87,7 @@ body.blur::before {
     left: 50%;
     transform: translateX(-50%);
     display: grid;
-    grid-template-columns: repeat(auto-fill, 30px);
+    grid-template-columns: repeat(19, 30px);
     gap: 5px;
     justify-content: center;
 }

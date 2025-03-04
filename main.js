@@ -22,6 +22,8 @@ arsenalButton.onclick = function() {
     } else {
         round = 1;
         value = 10;
+        arsenal.count = 1;
+        updateGrid();
     }
     updateInfoArea();
 };
@@ -47,6 +49,7 @@ function showCards() {
     const randomCardIndex = Math.floor(Math.random() * 3);
 
     cardContainer.querySelectorAll('.card').forEach((card, index) => {
+        card.textContent = index === randomCardIndex ? 'Arsenal + 1' : 'Nothing';
         card.onclick = function() {
             console.log(`Card ${card.dataset.card} has been selected`);
             if (index === randomCardIndex) {
