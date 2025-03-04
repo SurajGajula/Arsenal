@@ -14,7 +14,7 @@ document.querySelector('.arsenal-button').onclick = function() {
     console.log('arsenal');
     const arsenalValue = arsenal.value();
     document.querySelector('.display-area').textContent = arsenalValue;
-    if (arsenalValue > value) {
+    if (arsenalValue >= value) {
         round += 1;
         value += 10;
     } else {
