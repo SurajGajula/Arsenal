@@ -17,9 +17,24 @@ document.querySelector('.arsenal-button').onclick = function() {
     if (arsenalValue >= value) {
         round += 1;
         value += 10;
+        showCards();
     } else {
         round = 1;
         value = 10;
     }
     updateInfoArea();
 };
+
+function showCards() {
+    document.body.classList.add('blur');
+    const cardContainer = document.querySelector('.card-container');
+    cardContainer.style.display = 'flex';
+
+    cardContainer.querySelectorAll('.card').forEach(card => {
+        card.onclick = function() {
+            console.log(`Card ${card.dataset.card} has been selected`);
+            document.body.classList.remove('blur');
+            cardContainer.style.display = 'none';
+        };
+    });
+}
