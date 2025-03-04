@@ -23,6 +23,7 @@ arsenalButton.onclick = function() {
         round = 1;
         value = 10;
         arsenal.count = 1;
+        arsenal.damage = 10;
         updateGrid();
     }
     updateInfoArea();
@@ -47,14 +48,23 @@ function showCards() {
     arsenalButton.disabled = true;
 
     const randomCardIndex = Math.floor(Math.random() * 3);
+    const randomDamageCardIndex = (randomCardIndex + 1) % 3;
 
     cardContainer.querySelectorAll('.card').forEach((card, index) => {
-        card.textContent = index === randomCardIndex ? 'Arsenal + 1' : 'Nothing';
+        if (index === randomCardIndex) {
+            card.textContent = 'Arsenal + 1';
+        } else if (index === randomDamageCardIndex) {
+            card.textContent = 'Damage + 10';
+        } else {
+            card.textContent = 'Nothing';
+        }
         card.onclick = function() {
             console.log(`Card ${card.dataset.card} has been selected`);
             if (index === randomCardIndex) {
-                arsenal.increment();
+                arsenal.incrementCount();
                 updateGrid();
+            } else if (index === randomDamageCardIndex) {
+                arsenal.incrementDamage();
             }
             document.body.classList.remove('blur');
             cardContainer.style.display = 'none';

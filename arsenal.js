@@ -1,12 +1,16 @@
 class Arsenal {
     constructor() {
         this.count = 1;
+        this.damage = 10;
     }
     value() {
-        return this.count * 10;
+        return this.count * this.damage;
     }
-    increment() {
+    incrementCount() {
         this.count += 1;
+    }
+    incrementDamage() {
+        this.damage += 10;
     }
 }
 
