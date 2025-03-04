@@ -1,16 +1,30 @@
 class Arsenal {
     constructor() {
-        this.count = 1;
-        this.damage = 10;
+        this.arms = [new Arm()];
     }
     value() {
-        return this.count * this.damage;
+        return this.arms.reduce((total, arm) => total + arm.value(), 0);
     }
-    incrementCount() {
-        this.count += 1;
+    incrementArm() {
+        this.arms.push(new Arm());
     }
     incrementDamage() {
-        this.damage += 10;
+        this.arms.forEach(arm => arm.damage += 10);
+    }
+}
+
+class Arm {
+    constructor() {
+        this.type = 'normal';
+        this.damage = 10;
+    }
+    setType(type) {
+        this.type = type;
+    }
+    value() {
+        if (this.type === 'normal') {
+            return this.damage;
+        }
     }
 }
 

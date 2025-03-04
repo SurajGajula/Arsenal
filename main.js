@@ -22,8 +22,7 @@ arsenalButton.onclick = function() {
     } else {
         round = 1;
         value = 10;
-        arsenal.count = 1;
-        arsenal.damage = 10;
+        arsenal.arms = [new Arm()];
         updateGrid();
     }
     updateInfoArea();
@@ -61,7 +60,7 @@ function showCards() {
         card.onclick = function() {
             console.log(`Card ${card.dataset.card} has been selected`);
             if (index === randomCardIndex) {
-                arsenal.incrementCount();
+                arsenal.incrementArm();
                 updateGrid();
             } else if (index === randomDamageCardIndex) {
                 arsenal.incrementDamage();
