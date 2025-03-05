@@ -53,6 +53,7 @@ function showCards() {
     const randomDamageCardIndex = (randomCardIndex + 1) % 3;
 
     cardContainer.querySelectorAll('.card').forEach((card, index) => {
+        card.classList.remove('explosive');
         if (index === randomCardIndex) {
             card.textContent = 'Arsenal + 1';
         } else if (index === randomDamageCardIndex) {
