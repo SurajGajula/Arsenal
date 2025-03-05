@@ -75,3 +75,21 @@ function nextRound(arsenalValue, value) {
 }
 
 showCards();
+
+document.addEventListener('keydown', function(event) {
+    if (event.code === 'Space' && !arsenalButton.disabled) {
+        arsenalButton.click();
+    }
+
+    if (document.body.classList.contains('blur')) {
+        const cardContainer = document.querySelector('.card-container');
+        const cards = cardContainer.querySelectorAll('.card');
+        if (event.key === '1' && cards[0]) {
+            cards[0].click();
+        } else if (event.key === '2' && cards[1]) {
+            cards[1].click();
+        } else if (event.key === '3' && cards[2]) {
+            cards[2].click();
+        }
+    }
+});
