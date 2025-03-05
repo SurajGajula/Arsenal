@@ -1,4 +1,4 @@
-class Arsenal {
+export class Arsenal {
     constructor() {
         this.arms = [new Arm()];
     }
@@ -13,7 +13,7 @@ class Arsenal {
     }
 }
 
-class Arm {
+export class Arm {
     constructor() {
         this.type = 'normal';
         this.damage = 10;
@@ -27,5 +27,3 @@ class Arm {
         }
     }
 }
-
-export default { Arsenal, Arm };

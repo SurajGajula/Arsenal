@@ -1,4 +1,4 @@
-import Arsenal from './arsenal.js';
+import { Arsenal, Arm } from './arsenal.js';
 
 let round = 1;
 let value = 10;
