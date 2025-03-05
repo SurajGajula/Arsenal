@@ -13,7 +13,7 @@ body {
     background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
     border: none;
     border-radius: 10px;
-    box-shadow: 5px 5px 10px #0d0d0d, -5px -5px 10px #353535;
+    box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -35,7 +35,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
 }
 
 .info-area {
@@ -50,7 +50,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
     margin-bottom: 60px; /* Space between info-area and display-area */
 }
 
