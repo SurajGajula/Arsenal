@@ -25,3 +25,5 @@ class Cards {
         return null;
     }
 }
+
+export default Cards;
