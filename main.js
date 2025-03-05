@@ -73,7 +73,7 @@ function showCards() {
 }
 
 function nextRound(arsenalValue, value) {
-    const diff = value - arsenalValue;
+    const diff = arsenalValue -value;
     let increment = 10 + round * diff;
     return value + increment;
 }
