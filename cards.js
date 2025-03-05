@@ -14,9 +14,10 @@ class Cards {
     }
 
     getCard() {
-        const totalProbability = Object.values(this.probability).reduce((acc, prob) => acc + prob, 0);
+        const rarityCards = Object.entries(this.cards).filter(([card, rarity]) => this.probability[rarity] > 0);
+        const totalProbability = rarityCards.reduce((acc, [card, rarity]) => acc + this.probability[rarity], 0);
         let random = Math.random() * totalProbability;
-        for (const [card, rarity] of Object.entries(this.cards)) {
+        for (const [card, rarity] of rarityCards) {
             random -= this.probability[rarity];
             if (random <= 0) {
                 return card;
