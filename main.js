@@ -49,22 +49,28 @@ function showCards() {
     cardContainer.style.display = 'flex';
     arsenalButton.disabled = true;
 
-    const selectedCards = [cards.getCard(), cards.getCard(), cards.getCard()];
+    const numberOfCards = round >= 25 ? 4 : 3;
+    const selectedCards = Array.from({ length: numberOfCards }, () => cards.getCard());
 
     cardContainer.querySelectorAll('.card').forEach((card, index) => {
-        card.classList.remove('explosive');
-        const selectedCard = selectedCards[index];
-        card.textContent = selectedCard;
-        if (selectedCard === 'Explosive') {
-            card.classList.add('explosive');
+        if (index < numberOfCards) {
+            card.style.display = 'flex';
+            card.classList.remove('explosive');
+            const selectedCard = selectedCards[index];
+            card.textContent = selectedCard;
+            if (selectedCard === 'Explosive') {
+                card.classList.add('explosive');
+            }
+            card.onclick = function() {
+                cards.useCard(selectedCard);
+                updateGrid();
+                document.body.classList.remove('blur');
+                cardContainer.style.display = 'none';
+                arsenalButton.disabled = false;
+            };
+        } else {
+            card.style.display = 'none';
         }
-        card.onclick = function() {
-            cards.useCard(selectedCard);
-            updateGrid();
-            document.body.classList.remove('blur');
-            cardContainer.style.display = 'none';
-            arsenalButton.disabled = false;
-        };
     });
 }
 

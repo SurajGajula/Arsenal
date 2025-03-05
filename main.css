@@ -105,6 +105,10 @@ body.blur::before {
     box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #353535;
 }
 
+.card[data-card="4"] {
+    display: none;
+}
+
 .grid-container {
     position: fixed;
     bottom: 60px;
