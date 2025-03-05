@@ -36,6 +36,7 @@ function updateGrid() {
         square.className = 'square';
         if (cards.arsenal.arms[i].type === 'explosive') {
             square.style.backgroundColor = '#b22222';
+            console.log('Explosive arm detected, color set to:', square.style.backgroundColor);
         }
         gridContainer.appendChild(square);
     }
