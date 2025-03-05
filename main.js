@@ -1,8 +1,10 @@
 import { Arsenal, Arm } from './arsenal.js';
+import Cards from './cards.js';
 
 let round = 1;
 let value = 10;
 const arsenal = new Arsenal();
+const cards = new Cards();
 const arsenalButton = document.querySelector('.arsenal-button');
 
 function updateInfoArea() {
@@ -49,27 +51,23 @@ function showCards() {
     cardContainer.style.display = 'flex';
     arsenalButton.disabled = true;
 
-    const randomCardIndex = Math.floor(Math.random() * 3);
-    const randomDamageCardIndex = (randomCardIndex + 1) % 3;
+    const selectedCards = [cards.getCard(), cards.getCard(), cards.getCard()];
 
     cardContainer.querySelectorAll('.card').forEach((card, index) => {
         card.classList.remove('explosive');
-        if (index === randomCardIndex) {
-            card.textContent = 'Arsenal + 1';
-        } else if (index === randomDamageCardIndex) {
-            card.textContent = 'Damage + 10';
-        } else {
-            card.textContent = 'Explosive';
+        const selectedCard = selectedCards[index];
+        card.textContent = selectedCard;
+        if (selectedCard === 'Explosive') {
             card.classList.add('explosive');
         }
         card.onclick = function() {
             console.log(`Card ${card.dataset.card} has been selected`);
-            if (index === randomCardIndex) {
+            if (selectedCard === 'Arsenal') {
                 arsenal.incrementArm();
                 updateGrid();
-            } else if (index === randomDamageCardIndex) {
+            } else if (selectedCard === 'Damage') {
                 arsenal.incrementDamage();
-            } else {
+            } else if (selectedCard === 'Explosive') {
                 const normalArm = arsenal.arms.find(arm => arm.type === 'normal');
                 if (normalArm) {
                     normalArm.setType('explosive');
