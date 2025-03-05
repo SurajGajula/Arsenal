@@ -1,5 +1,7 @@
 body {
     background-color: #121212;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
 }
 
 .arsenal-button {
@@ -72,14 +74,23 @@ body.blur::before {
 .card {
     width: 20vw;
     height: 50vh;
-    background-color: #fff;
+    background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+    color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     margin: 0 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+    box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #353535;
 }
 
 .grid-container {
