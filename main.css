@@ -23,35 +23,26 @@ body {
     box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #353535;
 }
 
-.display-area {
+.display-area, .info-area {
     position: fixed;
     top: 80px;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
     height: 50px;
-    background-color: #f0f0f0;
+    background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+    color: #fff;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
+    transition: all 0.3s ease;
 }
 
-.info-area {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 50px;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
-    margin-bottom: 60px; /* Space between info-area and display-area */
+.display-area:hover, .info-area:hover {
+    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+    box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #353535;
 }
 
 body.blur {
