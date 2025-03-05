@@ -93,6 +93,18 @@ body.blur::before {
     box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #353535;
 }
 
+.card.explosive {
+    background: linear-gradient(145deg, #8b0000, #b22222);
+    color: #fff;
+    box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
+    transition: all 0.3s ease;
+}
+
+.card.explosive:hover {
+    background: linear-gradient(145deg, #b22222, #8b0000);
+    box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #353535;
+}
+
 .grid-container {
     position: fixed;
     bottom: 60px;

@@ -55,7 +55,7 @@ function showCards() {
         } else if (index === randomDamageCardIndex) {
             card.textContent = 'Damage + 10';
         } else {
-            card.textContent = 'Nothing';
+            card.textContent = 'Explosive';
         }
         card.onclick = function() {
             console.log(`Card ${card.dataset.card} has been selected`);
@@ -64,6 +64,11 @@ function showCards() {
                 updateGrid();
             } else if (index === randomDamageCardIndex) {
                 arsenal.incrementDamage();
+            } else {
+                const normalArm = arsenal.arms.find(arm => arm.type === 'normal');
+                if (normalArm) {
+                    normalArm.setType('explosive');
+                }
             }
             document.body.classList.remove('blur');
             cardContainer.style.display = 'none';
@@ -74,6 +79,6 @@ function showCards() {
 
 function nextRound(arsenalValue, value) {
     const diff = arsenalValue -value;
-    let increment = 10 + round * diff;
+    let increment = Math.ceil((10 + round * diff / round) / 10) * 10;
     return value + increment;
 }

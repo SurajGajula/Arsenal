@@ -25,5 +25,8 @@ export class Arm {
         if (this.type === 'normal') {
             return this.damage;
         }
+        if (this.type === 'explosive') {
+            return this.damage * 2;
+        }
     }
 }
