@@ -88,3 +88,5 @@ function nextRound(arsenalValue, value) {
     let increment = Math.ceil((10 + Math.pow(round, 3) / 1000 + Math.log10(diff + 1) * 10) / 10) * 10;
     return value + increment;
 }
+
+showCards();
