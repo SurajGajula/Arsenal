@@ -99,3 +99,8 @@ body.blur::before {
     background-color: #d3d3d3;
     border-radius: 5px;
 }
+
+.info-area {
+    top: 10px;
+    margin-bottom: 0;
+}
