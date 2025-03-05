@@ -115,16 +115,18 @@ body.blur::before {
     left: 50%;
     transform: translateX(-50%);
     display: grid;
-    grid-template-columns: repeat(19, 30px);
+    grid-template-columns: repeat(10, 40px);
     gap: 5px;
     justify-content: center;
 }
 
 .square {
-    width: 30px;
-    height: 30px;
-    background-color: #d3d3d3;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #d3d3d3, #a9a9a9);
     border-radius: 5px;
+    box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
+    transition: all 0.3s ease;
 }
 
 .info-area {

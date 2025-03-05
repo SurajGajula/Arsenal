@@ -96,6 +96,8 @@ document.addEventListener('keydown', function(event) {
             cards[1].click();
         } else if (event.key === '3' && cards[2]) {
             cards[2].click();
+        } else if (event.key === '4' && cards[3]) {
+            cards[3].click();
         }
     }
 });
