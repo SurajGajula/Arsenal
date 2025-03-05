@@ -38,11 +38,7 @@ body {
     justify-content: center;
     box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
     transition: all 0.3s ease;
-}
-
-.display-area:hover, .info-area:hover {
-    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-    box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #353535;
+    margin-bottom: 60px;
 }
 
 body.blur {
