@@ -28,4 +28,4 @@ class Arm {
     }
 }
 
-export default Arsenal;
+export default { Arsenal, Arm };
