@@ -34,6 +34,9 @@ function updateGrid() {
     for (let i = 0; i < arsenal.arms.length; i++) {
         const square = document.createElement('div');
         square.className = 'square';
+        if (arsenal.arms[i].type === 'explosive') {
+            square.style.backgroundColor = '#b22222';
+        }
         gridContainer.appendChild(square);
     }
 }
@@ -56,6 +59,7 @@ function showCards() {
             card.textContent = 'Damage + 10';
         } else {
             card.textContent = 'Explosive';
+            card.classList.add('explosive');
         }
         card.onclick = function() {
             console.log(`Card ${card.dataset.card} has been selected`);
@@ -69,6 +73,7 @@ function showCards() {
                 if (normalArm) {
                     normalArm.setType('explosive');
                 }
+                updateGrid();
             }
             document.body.classList.remove('blur');
             cardContainer.style.display = 'none';
