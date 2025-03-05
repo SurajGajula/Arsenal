@@ -23,6 +23,7 @@ arsenalButton.onclick = function() {
         value = 10;
         cards.arsenal.reset();
         updateGrid();
+        showCards();
     }
     updateInfoArea();
 };
