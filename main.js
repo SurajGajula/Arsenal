@@ -17,7 +17,7 @@ arsenalButton.onclick = function() {
     document.querySelector('.display-area').textContent = arsenalValue;
     if (arsenalValue >= value) {
         round += 1;
-        value += 10;
+        value = nextRound(arsenalValue, value);
         showCards();
     } else {
         round = 1;
@@ -70,4 +70,10 @@ function showCards() {
             arsenalButton.disabled = false;
         };
     });
+}
+
+function nextRound(arsenalValue, value) {
+    const diff = value - arsenalValue;
+    let increment = 10 + round * diff;
+    return value + increment;
 }
