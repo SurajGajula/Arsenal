@@ -11,6 +11,9 @@ export class Arsenal {
     incrementDamage() {
         this.arms.forEach(arm => arm.damage += 10);
     }
+    reset() {
+        this.arms = [new Arm()];
+    }
 }
 
 export class Arm {

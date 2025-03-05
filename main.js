@@ -1,9 +1,7 @@
-import { Arsenal, Arm } from './arsenal.js';
 import Cards from './cards.js';
 
 let round = 1;
 let value = 10;
-const arsenal = new Arsenal();
 const cards = new Cards();
 const arsenalButton = document.querySelector('.arsenal-button');
 
@@ -14,8 +12,7 @@ function updateInfoArea() {
 updateInfoArea();
 
 arsenalButton.onclick = function() {
-    console.log('arsenal');
-    const arsenalValue = arsenal.value();
+    const arsenalValue = cards.arsenal.value();
     document.querySelector('.display-area').textContent = arsenalValue;
     if (arsenalValue >= value) {
         round += 1;
@@ -24,7 +21,7 @@ arsenalButton.onclick = function() {
     } else {
         round = 1;
         value = 10;
-        arsenal.arms = [new Arm()];
+        cards.arsenal.reset();
         updateGrid();
     }
     updateInfoArea();
@@ -33,10 +30,10 @@ arsenalButton.onclick = function() {
 function updateGrid() {
     const gridContainer = document.querySelector('.grid-container');
     gridContainer.innerHTML = '';
-    for (let i = 0; i < arsenal.arms.length; i++) {
+    for (let i = 0; i < cards.arsenal.arms.length; i++) {
         const square = document.createElement('div');
         square.className = 'square';
-        if (arsenal.arms[i].type === 'explosive') {
+        if (cards.arsenal.arms[i].type === 'explosive') {
             square.style.backgroundColor = '#b22222';
         }
         gridContainer.appendChild(square);
@@ -61,19 +58,8 @@ function showCards() {
             card.classList.add('explosive');
         }
         card.onclick = function() {
-            console.log(`Card ${card.dataset.card} has been selected`);
-            if (selectedCard === 'Arsenal') {
-                arsenal.incrementArm();
-                updateGrid();
-            } else if (selectedCard === 'Damage') {
-                arsenal.incrementDamage();
-            } else if (selectedCard === 'Explosive') {
-                const normalArm = arsenal.arms.find(arm => arm.type === 'normal');
-                if (normalArm) {
-                    normalArm.setType('explosive');
-                }
-                updateGrid();
-            }
+            cards.useCard(selectedCard);
+            updateGrid();
             document.body.classList.remove('blur');
             cardContainer.style.display = 'none';
             arsenalButton.disabled = false;

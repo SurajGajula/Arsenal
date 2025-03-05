@@ -1,3 +1,5 @@
+import { Arsenal } from './arsenal.js';
+
 class Cards {
     constructor() {
         this.cards = {
@@ -11,6 +13,7 @@ class Cards {
             "Rare": 0.0,
             "Legendary": 0.0
         };
+        this.arsenal = new Arsenal();
     }
 
     getCard() {
@@ -24,6 +27,19 @@ class Cards {
             }
         }
         return null;
+    }
+
+    useCard(card) {
+        if (card === "Arsenal") {
+            this.arsenal.incrementArm();
+        } else if (card === "Damage") {
+            this.arsenal.incrementDamage();
+        } else if (card === "Explosive") {
+            const normalArm = this.arsenal.arms.find(arm => arm.type === 'normal');
+            if (normalArm) {
+                normalArm.setType('explosive');
+            }
+        }
     }
 }
 
