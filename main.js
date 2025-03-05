@@ -85,6 +85,6 @@ function showCards() {
 
 function nextRound(arsenalValue, value) {
     const diff = arsenalValue -value;
-    let increment = Math.ceil((10 + round * (diff / round)) / 10) * 10;
+    let increment = Math.ceil((10 + Math.pow(round, 1.5) * Math.pow(diff, 1.5) / 100) / 10) * 10;
     return value + increment;
 }
