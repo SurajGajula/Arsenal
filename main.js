@@ -4,6 +4,7 @@ let round = 1;
 let value = 10;
 const cards = new Cards();
 const arsenalButton = document.querySelector('.arsenal-button');
+const refreshButton = document.querySelector('.refresh-button');
 
 function updateInfoArea() {
     document.querySelector('.info-area').textContent = `Round: ${round}, Value: ${value}`;
@@ -11,12 +12,28 @@ function updateInfoArea() {
 
 updateInfoArea();
 
+function updateRefreshButton() {
+    refreshButton.style.display = document.body.classList.contains('blur') ? 'block' : 'none';
+    refreshButton.disabled = cards.arsenal.refresh <= 0;
+}
+
+refreshButton.onclick = function() {
+    if (cards.arsenal.refresh > 0) {
+        cards.arsenal.refresh -= 1;
+        showCards();
+        updateRefreshButton();
+    }
+};
+
 arsenalButton.onclick = function() {
     const arsenalValue = cards.arsenal.value();
     document.querySelector('.display-area').textContent = arsenalValue;
     if (arsenalValue >= value) {
         round += 1;
         value = nextRound(arsenalValue, value);
+        if (round % 25 === 0) {
+            cards.arsenal.refresh += 1;
+        }
         showCards();
     } else {
         round = 1;
@@ -26,6 +43,7 @@ arsenalButton.onclick = function() {
         showCards();
     }
     updateInfoArea();
+    updateRefreshButton();
 };
 
 function updateGrid() {
@@ -82,6 +100,7 @@ function nextRound(arsenalValue, value) {
 }
 
 showCards();
+updateRefreshButton();
 
 document.addEventListener('keydown', function(event) {
     if (event.code === 'Space' && !arsenalButton.disabled) {

@@ -1,6 +1,7 @@
 export class Arsenal {
     constructor() {
         this.arms = [new Arm()];
+        this.refresh = 1;
     }
     value() {
         return this.arms.reduce((total, arm) => total + arm.value(), 0);
@@ -13,6 +14,7 @@ export class Arsenal {
     }
     reset() {
         this.arms = [new Arm()];
+        this.refresh = 1;
     }
 }
 
