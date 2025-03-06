@@ -5,6 +5,8 @@ let value = 10;
 const cards = new Cards();
 const arsenalButton = document.querySelector('.arsenal-button');
 const refreshButton = document.querySelector('.refresh-button');
+let timerInterval;
+let startTime;
 
 function updateInfoArea() {
     document.querySelector('.info-area').textContent = `Round: ${round}, Value: ${value}`;
@@ -25,6 +27,20 @@ refreshButton.onclick = function() {
     }
 };
 
+function startTimer() {
+    startTime = Date.now();
+    timerInterval = setInterval(() => {
+        const elapsedTime = Date.now() - startTime;
+        const seconds = Math.floor(elapsedTime / 1000);
+        document.querySelector('.info-area').textContent = `Round: ${round}, Value: ${value}, Time: ${seconds}s`;
+    }, 1000);
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    document.querySelector('.info-area').textContent = `Round: ${round}, Value: ${value}, Time: 0s`;
+}
+
 arsenalButton.onclick = function() {
     const arsenalValue = cards.arsenal.value();
     document.querySelector('.display-area').textContent = arsenalValue;
@@ -33,6 +49,7 @@ arsenalButton.onclick = function() {
         value = nextRound(arsenalValue, value);
         if (round % 25 === 0) {
             cards.arsenal.refresh += 1;
+            cards.addCard('Surpressor', 'Uncommon');
         }
         showCards();
     } else {
@@ -41,6 +58,7 @@ arsenalButton.onclick = function() {
         cards.arsenal.reset();
         updateGrid();
         showCards();
+        resetTimer();
     }
     updateInfoArea();
     updateRefreshButton();
@@ -84,6 +102,7 @@ function showCards() {
                 card.classList.add('explosive');
             }
             card.onclick = function() {
+                if (!timerInterval) startTimer();
                 cards.useCard(selectedCard);
                 updateGrid();
                 document.body.classList.remove('blur');

@@ -40,6 +40,11 @@ class Cards {
             if (normalArm) {
                 normalArm.setType('explosive');
             }
+        } else if (card === "Surpressor") {
+            const normalArm = this.arsenal.arms.find(arm => arm.type === 'normal');
+            if (normalArm) {
+                normalArm.setType('surpressor');
+            }
         }
     }
     addCard(card, rarity) {
