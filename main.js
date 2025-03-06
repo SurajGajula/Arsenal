@@ -101,13 +101,7 @@ function nextRound(arsenalValue, value) {
     let increment = Math.ceil((10 + Math.pow(round, 3) / 1000 + Math.log10(diff + 1) * 10) / 10) * 10;
     const surpressorCount = cards.arsenal.arms.filter(arm => arm.type === 'surpressor').length;
     const adjustedIncrement = Math.ceil(increment * (1 - 0.05 * surpressorCount) / 10) * 10;
-    const newValue = value + increment;
     const adjustedValue = value + adjustedIncrement;
-    if (surpressorCount > 0) {
-        document.querySelector('.display-area').textContent = `${newValue} (${adjustedValue})`;
-    } else {
-        document.querySelector('.display-area').textContent = `${newValue}`;
-    }
     return adjustedValue;
 }
 
