@@ -51,6 +51,21 @@ class Cards {
         this.cards[card] = rarity;
         this.probability[rarity] += 0.1;
     }
+    reset() {
+        this.cards = {
+            "Arsenal": "Common",
+            "Damage": "Common",
+            "Explosive": "Common",
+            "Surpressor": "Rare"
+        };
+        this.probability = {
+            "Common": 1.0,
+            "Uncommon": 0.0,
+            "Rare": 0.0,
+            "Legendary": 0.0
+        };
+        this.arsenal.reset();
+    }
 }
 
 export default Cards;

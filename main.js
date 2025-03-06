@@ -39,7 +39,7 @@ arsenalButton.onclick = function() {
     } else {
         round = 1;
         value = 10;
-        cards.arsenal.reset();
+        cards.reset();
         updateGrid();
         showCards();
     }
@@ -80,11 +80,13 @@ function showCards() {
     cardContainer.querySelectorAll('.card').forEach((card, index) => {
         if (index < numberOfCards) {
             card.style.display = 'flex';
-            card.classList.remove('explosive');
+            card.classList.remove('explosive', 'surpressor');
             const selectedCard = selectedCards[index];
             card.textContent = selectedCard;
             if (selectedCard === 'Explosive') {
                 card.classList.add('explosive');
+            } else if (selectedCard === 'Surpressor') {
+                card.classList.add('surpressor');
             }
             card.onclick = function() {
                 cards.useCard(selectedCard);
