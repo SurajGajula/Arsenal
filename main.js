@@ -103,15 +103,13 @@ function showCards() {
 
 function nextRound(arsenalValue, value) {
     const diff = arsenalValue - value;
-    console.log(`Arsenal Value: ${arsenalValue}, Value: ${value}, Diff: ${diff}`);
-    let increment = Math.ceil((10 + Math.pow(round, 3) / 1000 + Math.log10(diff + 1) * 10) / 10) * 10;
-    console.log(`Increment: ${increment}`);
+    let increment = 10;
+    if (round > 4) {
+        increment = Math.ceil((10 + Math.pow(round, 2.5) / 1000 + Math.log10(diff + 1) * 10) / 10) * 10;
+    }
     const surpressorCount = cards.arsenal.arms.filter(arm => arm.type === 'surpressor').length;
-    console.log(`Surpressor Count: ${surpressorCount}`);
     const adjustedIncrement = Math.ceil(increment * (1 - 0.05 * surpressorCount) / 10) * 10;
-    console.log(`Adjusted Increment: ${adjustedIncrement}`);
     const adjustedValue = value + adjustedIncrement;
-    console.log(`Adjusted Value: ${adjustedValue}`);
     return adjustedValue;
 }
 
