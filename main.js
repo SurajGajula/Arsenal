@@ -19,8 +19,7 @@ function updateInfoArea() {
 updateInfoArea();
 
 function updateRefreshButton() {
-    refreshButton.style.display = document.body.classList.contains('blur') ? 'block' : 'none';
-    refreshButton.disabled = cards.arsenal.refresh <= 0;
+    refreshButton.style.display = document.body.classList.contains('blur') && cards.arsenal.refresh > 0 ? 'block' : 'none';
 }
 
 refreshButton.onclick = function() {
