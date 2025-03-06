@@ -56,6 +56,9 @@ function updateGrid() {
             square.style.background = 'linear-gradient(145deg, #8b0000, #b22222)';
             console.log('Explosive arm detected, gradient applied:', square.style.background);
         }
+        const damageText = document.createElement('span');
+        damageText.textContent = cards.arsenal.arms[i].value();
+        square.appendChild(damageText);
         gridContainer.appendChild(square);
     }
 }
