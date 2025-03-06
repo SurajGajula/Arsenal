@@ -106,14 +106,14 @@ body.blur::before {
 }
 
 .card.surpressor {
-    background: linear-gradient(145deg, #add8e6, #87ceeb);
+    background: linear-gradient(145deg, #5f9ea0, #4682b4);
     color: #fff;
     box-shadow: 0 0 10px #0d0d0d, 0 0 10px #353535;
     transition: all 0.3s ease;
 }
 
 .card.surpressor:hover {
-    background: linear-gradient(145deg, #87ceeb, #add8e6);
+    background: linear-gradient(145deg, #4682b4, #5f9ea0);
     box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #353535;
 }
 

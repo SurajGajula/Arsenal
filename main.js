@@ -56,10 +56,11 @@ function updateGrid() {
         if (cards.arsenal.arms[i].type === 'explosive') {
             square.style.background = 'linear-gradient(145deg, #8b0000, #b22222)';
         } else if (cards.arsenal.arms[i].type === 'surpressor') {
-            square.style.background = 'linear-gradient(145deg, #add8e6, #87ceeb)';
+            square.style.background = 'linear-gradient(145deg, #5f9ea0, #4682b4)';
         }
         const damageText = document.createElement('span');
         damageText.textContent = cards.arsenal.arms[i].value();
+        damageText.style.color = '#fff';
         square.appendChild(damageText);
         gridContainer.appendChild(square);
     }
@@ -100,10 +101,15 @@ function showCards() {
 
 function nextRound(arsenalValue, value) {
     const diff = arsenalValue - value;
+    console.log(`Arsenal Value: ${arsenalValue}, Value: ${value}, Diff: ${diff}`);
     let increment = Math.ceil((10 + Math.pow(round, 3) / 1000 + Math.log10(diff + 1) * 10) / 10) * 10;
+    console.log(`Increment: ${increment}`);
     const surpressorCount = cards.arsenal.arms.filter(arm => arm.type === 'surpressor').length;
+    console.log(`Surpressor Count: ${surpressorCount}`);
     const adjustedIncrement = Math.ceil(increment * (1 - 0.05 * surpressorCount) / 10) * 10;
+    console.log(`Adjusted Increment: ${adjustedIncrement}`);
     const adjustedValue = value + adjustedIncrement;
+    console.log(`Adjusted Value: ${adjustedValue}`);
     return adjustedValue;
 }
 
