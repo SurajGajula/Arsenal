@@ -147,18 +147,8 @@ body.blur::before {
 }
 
 .info-area {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-}
-
-.timer {
-    flex: 0 0 auto;
-}
-
-.info-content {
-    flex: 1 1 auto;
-    text-align: center;
+    top: 10px;
+    margin-bottom: 0;
 }
 
 .refresh-button {

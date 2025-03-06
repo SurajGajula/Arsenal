@@ -5,21 +5,16 @@ let value = 10;
 const cards = new Cards();
 const arsenalButton = document.querySelector('.arsenal-button');
 const refreshButton = document.querySelector('.refresh-button');
-let timerInterval;
-let startTime;
 
 function updateInfoArea() {
-    const timerElement = document.querySelector('.timer');
-    const infoContentElement = document.querySelector('.info-content');
-    const elapsedTime = timerInterval ? Math.floor((Date.now() - startTime) / 1000) : 0;
-    timerElement.textContent = `Time: ${elapsedTime}s`;
-    infoContentElement.textContent = `Round: ${round}, Value: ${value}`;
+    document.querySelector('.info-area').textContent = `Round: ${round}, Value: ${value}`;
 }
 
 updateInfoArea();
 
 function updateRefreshButton() {
-    refreshButton.style.display = document.body.classList.contains('blur') && cards.arsenal.refresh > 0 ? 'block' : 'none';
+    refreshButton.style.display = document.body.classList.contains('blur') ? 'block' : 'none';
+    refreshButton.disabled = cards.arsenal.refresh <= 0;
 }
 
 refreshButton.onclick = function() {
@@ -29,17 +24,6 @@ refreshButton.onclick = function() {
         updateRefreshButton();
     }
 };
-
-function startTimer() {
-    startTime = Date.now();
-    timerInterval = setInterval(updateInfoArea, 1000);
-}
-
-function resetTimer() {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    updateInfoArea();
-}
 
 arsenalButton.onclick = function() {
     const arsenalValue = cards.arsenal.value();
@@ -58,7 +42,6 @@ arsenalButton.onclick = function() {
         cards.arsenal.reset();
         updateGrid();
         showCards();
-        resetTimer();
     }
     updateInfoArea();
     updateRefreshButton();
@@ -102,7 +85,6 @@ function showCards() {
                 card.classList.add('explosive');
             }
             card.onclick = function() {
-                if (!timerInterval) startTimer();
                 cards.useCard(selectedCard);
                 updateGrid();
                 document.body.classList.remove('blur');
