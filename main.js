@@ -55,7 +55,8 @@ function updateGrid() {
         square.className = 'square';
         if (cards.arsenal.arms[i].type === 'explosive') {
             square.style.background = 'linear-gradient(145deg, #8b0000, #b22222)';
-            console.log('Explosive arm detected, gradient applied:', square.style.background);
+        } else if (cards.arsenal.arms[i].type === 'surpressor') {
+            square.style.background = 'linear-gradient(145deg, #add8e6, #87ceeb)';
         }
         const damageText = document.createElement('span');
         damageText.textContent = cards.arsenal.arms[i].value();
