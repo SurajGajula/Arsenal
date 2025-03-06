@@ -6,28 +6,35 @@ class Cards {
             "Arsenal": "Common",
             "Damage": "Common",
             "Explosive": "Common",
-            "Surpressor": "Rare"
+            "Surpressor": "Uncommon"
         };
         this.probability = {
-            "Common": 1.0,
-            "Uncommon": 0.0,
-            "Rare": 0.0,
-            "Legendary": 0.0
+            "Common": 10,
+            "Uncommon": 0,
+            "Rare": 0,
+            "Legendary": 0
         };
         this.arsenal = new Arsenal();
     }
 
     getCard() {
-        const rarityCards = Object.entries(this.cards).filter(([card, rarity]) => this.probability[rarity] > 0);
-        const totalProbability = rarityCards.reduce((acc, [card, rarity]) => acc + this.probability[rarity], 0);
-        let random = Math.random() * totalProbability;
-        for (const [card, rarity] of rarityCards) {
-            random -= this.probability[rarity];
-            if (random <= 0) {
-                return card;
+        const totalRarityProbability = Object.values(this.probability).reduce((acc, prob) => acc + prob, 0);
+        let randomRarity = Math.random() * totalRarityProbability;
+        let selectedRarity = null;
+
+        for (const [rarity, prob] of Object.entries(this.probability)) {
+            randomRarity -= prob;
+            if (randomRarity <= 0) {
+                selectedRarity = rarity;
+                break;
             }
         }
-        return null;
+
+        const cardsOfSelectedRarity = Object.entries(this.cards).filter(([card, rarity]) => rarity === selectedRarity);
+        const totalCards = cardsOfSelectedRarity.length;
+        const randomCardIndex = Math.floor(Math.random() * totalCards);
+
+        return cardsOfSelectedRarity[randomCardIndex][0];
     }
 
     useCard(card) {
@@ -47,9 +54,8 @@ class Cards {
             }
         }
     }
-    addCard(card, rarity) {
-        this.cards[card] = rarity;
-        this.probability[rarity] += 0.1;
+    addCard(card) {
+        this.probability[this.cards[card]] += 1;
     }
     reset() {
         this.cards = {
@@ -59,10 +65,10 @@ class Cards {
             "Surpressor": "Rare"
         };
         this.probability = {
-            "Common": 1.0,
-            "Uncommon": 0.0,
-            "Rare": 0.0,
-            "Legendary": 0.0
+            "Common": 10,
+            "Uncommon": 0,
+            "Rare": 0,
+            "Legendary": 0
         };
         this.arsenal.reset();
     }

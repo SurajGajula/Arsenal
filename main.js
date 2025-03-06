@@ -13,7 +13,8 @@ function updateInfoArea() {
 updateInfoArea();
 
 function updateRefreshButton() {
-    refreshButton.style.display = document.body.classList.contains('blur') ? 'block' : 'none';
+    const cardContainer = document.querySelector('.card-container');
+    refreshButton.style.display = cardContainer.style.display === 'flex' ? 'block' : 'none';
     refreshButton.disabled = cards.arsenal.refresh <= 0;
 }
 
@@ -33,7 +34,7 @@ arsenalButton.onclick = function() {
         value = nextRound(arsenalValue, value);
         if (round % 25 === 0) {
             cards.arsenal.refresh += 1;
-            cards.addCard('Surpressor', 'Uncommon');
+            cards.addCard('Surpressor');
         }
         showCards();
     } else {
@@ -108,7 +109,7 @@ function nextRound(arsenalValue, value) {
         increment = Math.ceil((10 + Math.pow(round, 2.5) / 1000 + Math.log10(diff + 1) * 10) / 10) * 10;
     }
     const surpressorCount = cards.arsenal.arms.filter(arm => arm.type === 'surpressor').length;
-    const adjustedIncrement = Math.ceil(increment * (1 - 0.05 * surpressorCount) / 10) * 10;
+    const adjustedIncrement = Math.ceil(increment * (1 - 0.01 * surpressorCount) / 10) * 10;
     const adjustedValue = value + adjustedIncrement;
     return adjustedValue;
 }
