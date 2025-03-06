@@ -9,7 +9,11 @@ let timerInterval;
 let startTime;
 
 function updateInfoArea() {
-    document.querySelector('.info-area').textContent = `Round: ${round}, Value: ${value}`;
+    const timerElement = document.querySelector('.timer');
+    const infoContentElement = document.querySelector('.info-content');
+    const elapsedTime = timerInterval ? Math.floor((Date.now() - startTime) / 1000) : 0;
+    timerElement.textContent = `Time: ${elapsedTime}s`;
+    infoContentElement.textContent = `Round: ${round}, Value: ${value}`;
 }
 
 updateInfoArea();
@@ -29,16 +33,13 @@ refreshButton.onclick = function() {
 
 function startTimer() {
     startTime = Date.now();
-    timerInterval = setInterval(() => {
-        const elapsedTime = Date.now() - startTime;
-        const seconds = Math.floor(elapsedTime / 1000);
-        document.querySelector('.info-area').textContent = `Round: ${round}, Value: ${value}, Time: ${seconds}s`;
-    }, 1000);
+    timerInterval = setInterval(updateInfoArea, 1000);
 }
 
 function resetTimer() {
     clearInterval(timerInterval);
-    document.querySelector('.info-area').textContent = `Round: ${round}, Value: ${value}, Time: 0s`;
+    timerInterval = null;
+    updateInfoArea();
 }
 
 arsenalButton.onclick = function() {
