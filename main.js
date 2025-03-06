@@ -35,8 +35,8 @@ function updateGrid() {
         const square = document.createElement('div');
         square.className = 'square';
         if (cards.arsenal.arms[i].type === 'explosive') {
-            square.style.backgroundColor = '#b22222';
-            console.log('Explosive arm detected, color set to:', square.style.backgroundColor);
+            square.style.background = 'linear-gradient(145deg, #8b0000, #b22222)';
+            console.log('Explosive arm detected, gradient applied:', square.style.background);
         }
         gridContainer.appendChild(square);
     }
