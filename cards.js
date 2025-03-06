@@ -5,7 +5,8 @@ class Cards {
         this.cards = {
             "Arsenal": "Common",
             "Damage": "Common",
-            "Explosive": "Common"
+            "Explosive": "Common",
+            "Surpressor": "Rare"
         };
         this.probability = {
             "Common": 1.0,
@@ -40,6 +41,10 @@ class Cards {
                 normalArm.setType('explosive');
             }
         }
+    }
+    addCard(card, rarity) {
+        this.cards[card] = rarity;
+        this.probability[rarity] += 0.1;
     }
 }
 
